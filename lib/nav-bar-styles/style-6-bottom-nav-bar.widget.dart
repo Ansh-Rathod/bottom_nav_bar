@@ -81,34 +81,34 @@ class _BottomNavStyle6State extends State<BottomNavStyle6>
                         ),
                       ),
                       item.title == null
-                           ? SizedBox.shrink()
-                           : Padding(
-                               padding: const EdgeInsets.only(top: 15.0),
+                          ? SizedBox.shrink()
+                          : Padding(
+                              padding: const EdgeInsets.only(top: 15.0),
                               child: Material(
-                                 type: MaterialType.transparency,
-                                 child: FittedBox(
-                                   child: Text(
-                                     item.title!,
-                                     style: item.textStyle != null
-                                         ? (item.textStyle!.apply(
-                                             color: isSelected
-                                                 ? (item.activeColorSecondary ==
-                                                         null
-                                                   ? item.activeColorPrimary
+                                type: MaterialType.transparency,
+                                child: FittedBox(
+                                  child: Text(
+                                    item.title!,
+                                    style: item.textStyle != null
+                                        ? (item.textStyle!.apply(
+                                            color: isSelected
+                                                ? (item.activeColorSecondary ==
+                                                        null
+                                                    ? item.activeColorPrimary
                                                     : item.activeColorSecondary)
                                                 : item.inactiveColorPrimary))
                                         : TextStyle(
                                             color: isSelected
-                                                 ? (item.activeColorSecondary ==
-                                                         null
+                                                ? (item.activeColorSecondary ==
+                                                        null
                                                     ? item.activeColorPrimary
-                                                     : item.activeColorSecondary)
-                                                 : item.inactiveColorPrimary,
-                                             fontWeight: FontWeight.w400,
-                                             fontSize: 12.0),
-                                   ),
-                                 ),
-                               ),
+                                                    : item.activeColorSecondary)
+                                                : item.inactiveColorPrimary,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 12.0),
+                                  ),
+                                ),
+                              ),
                             ),
                     ],
                   ),
@@ -162,42 +162,39 @@ class _BottomNavStyle6State extends State<BottomNavStyle6>
         crossAxisAlignment: CrossAxisAlignment.center,
         children: widget.navBarEssentials!.items!.map((item) {
           int index = widget.navBarEssentials!.items!.indexOf(item);
-          return Expanded(
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: () {
-                  if (widget.navBarEssentials!.items![index].onPressed !=
-                      null) {
-                    widget.navBarEssentials!.items![index].onPressed!(
-                        widget.navBarEssentials!.selectedScreenBuildContext);
-                  } else {
-                    if (index != _selectedIndex) {
-                      _lastSelectedIndex = _selectedIndex;
-                      _selectedIndex = index;
-                      _animationControllerList[_selectedIndex!].forward();
-                      _animationControllerList[_lastSelectedIndex!].reverse();
-                    }
-                    widget.navBarEssentials!.onItemSelected!(index);
+          return Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () {
+                if (widget.navBarEssentials!.items![index].onPressed != null) {
+                  widget.navBarEssentials!.items![index].onPressed!(
+                      widget.navBarEssentials!.selectedScreenBuildContext);
+                } else {
+                  if (index != _selectedIndex) {
+                    _lastSelectedIndex = _selectedIndex;
+                    _selectedIndex = index;
+                    _animationControllerList[_selectedIndex!].forward();
+                    _animationControllerList[_lastSelectedIndex!].reverse();
                   }
-                },
-                child: Container(
-                  padding: EdgeInsets.only(
-                      left: widget.navBarEssentials!.padding?.left ??
-                          MediaQuery.of(context).size.width * 0.04,
-                      right: widget.navBarEssentials!.padding?.right ??
-                          MediaQuery.of(context).size.width * 0.04,
-                      top: widget.navBarEssentials!.padding?.top ??
-                          widget.navBarEssentials!.navBarHeight! * 0.15,
-                      bottom: widget.navBarEssentials!.padding?.bottom ??
-                          widget.navBarEssentials!.navBarHeight! * 0.12),
-                  color: Colors.transparent,
-                  child: _buildItem(
-                      item,
-                      widget.navBarEssentials!.selectedIndex == index,
-                      widget.navBarEssentials!.navBarHeight,
-                      index),
-                ),
+                  widget.navBarEssentials!.onItemSelected!(index);
+                }
+              },
+              child: Container(
+                padding: EdgeInsets.only(
+                    left: widget.navBarEssentials!.padding?.left ??
+                        MediaQuery.of(context).size.width * 0.04,
+                    right: widget.navBarEssentials!.padding?.right ??
+                        MediaQuery.of(context).size.width * 0.04,
+                    top: widget.navBarEssentials!.padding?.top ??
+                        widget.navBarEssentials!.navBarHeight! * 0.15,
+                    bottom: widget.navBarEssentials!.padding?.bottom ??
+                        widget.navBarEssentials!.navBarHeight! * 0.12),
+                color: Colors.transparent,
+                child: _buildItem(
+                    item,
+                    widget.navBarEssentials!.selectedIndex == index,
+                    widget.navBarEssentials!.navBarHeight,
+                    index),
               ),
             ),
           );
