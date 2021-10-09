@@ -162,42 +162,45 @@ class _BottomNavStyle6State extends State<BottomNavStyle6>
         crossAxisAlignment: CrossAxisAlignment.center,
         children: widget.navBarEssentials!.items!.map((item) {
           int index = widget.navBarEssentials!.items!.indexOf(item);
-          return SizedBox(
-            width: 80.0,
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: () {
-                  if (widget.navBarEssentials!.items![index].onPressed !=
-                      null) {
-                    widget.navBarEssentials!.items![index].onPressed!(
-                        widget.navBarEssentials!.selectedScreenBuildContext);
-                  } else {
-                    if (index != _selectedIndex) {
-                      _lastSelectedIndex = _selectedIndex;
-                      _selectedIndex = index;
-                      _animationControllerList[_selectedIndex!].forward();
-                      _animationControllerList[_lastSelectedIndex!].reverse();
+          return Flexible(
+            flex: 1,
+            child: SizedBox(
+              width: 80.0,
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () {
+                    if (widget.navBarEssentials!.items![index].onPressed !=
+                        null) {
+                      widget.navBarEssentials!.items![index].onPressed!(
+                          widget.navBarEssentials!.selectedScreenBuildContext);
+                    } else {
+                      if (index != _selectedIndex) {
+                        _lastSelectedIndex = _selectedIndex;
+                        _selectedIndex = index;
+                        _animationControllerList[_selectedIndex!].forward();
+                        _animationControllerList[_lastSelectedIndex!].reverse();
+                      }
+                      widget.navBarEssentials!.onItemSelected!(index);
                     }
-                    widget.navBarEssentials!.onItemSelected!(index);
-                  }
-                },
-                child: Container(
-                  padding: EdgeInsets.only(
-                      left: widget.navBarEssentials!.padding?.left ??
-                          MediaQuery.of(context).size.width * 0.04,
-                      right: widget.navBarEssentials!.padding?.right ??
-                          MediaQuery.of(context).size.width * 0.04,
-                      top: widget.navBarEssentials!.padding?.top ??
-                          widget.navBarEssentials!.navBarHeight! * 0.15,
-                      bottom: widget.navBarEssentials!.padding?.bottom ??
-                          widget.navBarEssentials!.navBarHeight! * 0.12),
-                  color: Colors.transparent,
-                  child: _buildItem(
-                      item,
-                      widget.navBarEssentials!.selectedIndex == index,
-                      widget.navBarEssentials!.navBarHeight,
-                      index),
+                  },
+                  child: Container(
+                    padding: EdgeInsets.only(
+                        left: widget.navBarEssentials!.padding?.left ??
+                            MediaQuery.of(context).size.width * 0.04,
+                        right: widget.navBarEssentials!.padding?.right ??
+                            MediaQuery.of(context).size.width * 0.04,
+                        top: widget.navBarEssentials!.padding?.top ??
+                            widget.navBarEssentials!.navBarHeight! * 0.15,
+                        bottom: widget.navBarEssentials!.padding?.bottom ??
+                            widget.navBarEssentials!.navBarHeight! * 0.12),
+                    color: Colors.transparent,
+                    child: _buildItem(
+                        item,
+                        widget.navBarEssentials!.selectedIndex == index,
+                        widget.navBarEssentials!.navBarHeight,
+                        index),
+                  ),
                 ),
               ),
             ),
